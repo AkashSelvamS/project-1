@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit Card Fraud Detection - Register</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #fff;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Background decorative shapes */
+        body::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            left: -100px;
+            width: 600px;
+            height: 600px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            z-index: -1;
+            animation: floatShape 10s infinite ease-in-out;
+        }
+
+        body::after {
+            content: '';
+            position: absolute;
+            bottom: -100px;
+            right: -100px;
+            width: 400px;
+            height: 400px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        @keyframes floatShape {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0); }
+        }
+
+        /* Register Form Container */
+        .register-container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 15px;
+            width: 350px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        h2 {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 14px;
+            margin-bottom: 30px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Floating Inputs */
+        .form-input {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .form-input input {
+            width: 100%;
+            padding: 12px 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 10px;
+            color: #fff;
+            font-size: 14px;
+            outline: none;
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .form-input input:focus {
+            background: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+        }
+
+        .form-input label {
+            position: absolute;
+            top: 12px;
+            left: 20px;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+
+        .form-input input:focus ~ label,
+        .form-input input:not(:placeholder-shown) ~ label {
+            top: -15px;
+            font-size: 12px;
+            color: #14ffec;
+        }
+
+        /* 3D Buttons */
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #14ffec;
+            color: #000;
+            font-weight: 700;
+            border: none;
+            border-radius: 25px;
+            box-shadow: 0 6px #0d7377;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 9px #0d7377;
+        }
+
+        button:active {
+            transform: translateY(0px);
+            box-shadow: 0 4px #0d7377;
+        }
+
+        /* Form Footer */
+        .form-footer {
+            margin-top: 20px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .form-footer a {
+            color: #14ffec;
+            text-decoration: none;
+        }
+
+        .form-footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .register-container {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Register Container -->
+    <section class="register-container">
+        <h2>Register</h2>
+        <p>Create a new account</p>
+
+        <form method="POST" action="{{ url_for('register') }}">
+            <div class="form-input">
+                <input name="username" type="text" required placeholder=" " id="username">
+                <label for="username">Username</label>
+            </div>
+            <div class="form-input">
+                <input name="password" type="password" required placeholder=" " id="password">
+                <label for="password">Password</label>
+            </div>
+            <div class="form-input">
+                <input name="email" type="email" required placeholder=" " id="email">
+                <label for="email">Email</label>
+            </div>
+            {% if error %}
+                <p style="color: #ff6b6b;">{{ error }}</p>
+            {% endif %}
+            <button type="submit">Register</button>
+        </form>
+
+        <div class="form-footer">
+            <p>Already have an account? <a href="{{ url_for('login') }}">Login here</a></p>
+        </div>
+    </section>
+
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fraud Detection Result</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='w3.css') }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(to right, #00bcd4, #00796b);
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .content-card {
+            background-color: #009688; /* Teal color for card background */
+            color: #ffffff; /* White text color */
+            border-radius: 8px;
+            padding: 24px;
+            margin: 0 auto;
+            max-width: 600px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        .button {
+            background-color: #004d40; /* Darker teal for buttons */
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            font-size: 18px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #00332c; /* Even darker teal for hover */
+            transform: scale(1.05);
+        }
+
+        .back-button {
+            background-color: #00796b;
+            padding: 12px 24px;
+        }
+
+        .back-button:hover {
+            background-color: #004d40;
+        }
+
+        .animated-text {
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="w3-card-4 content-card animated-text">
+        <div class="w3-center w3-padding-32 w3-xxlarge">Fraud Detection Result</div>
+    </div>
+
+    <br>
+    {% if prediction[0] == 1 %}
+        <div class="w3-card-4 content-card animated-text">
+            <h2>This Customer claim is Legit</h2>
+            <button class="button">Proceed to payment</button>
+        </div>
+    {% else %}
+        <div class="w3-card-4 content-card animated-text">
+            <h2>This Customer is Fraudulent</h2>
+            <h3>There is need for further investigation</h3>
+        </div>
+    {% endif %}
+    
+    <br>
+    <div class="w3-container w3-padding w3-center">
+        <a href="{{ url_for('home') }}"><button class="button back-button">Back</button></a>
+    </div>
+
+</body>
+</html>

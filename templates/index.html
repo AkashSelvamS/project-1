@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Credit Card Fraud Detection</title>
+  
+  <!-- Tailwind CSS for design -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+  <!-- Google Fonts for typography -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap">
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #74ebd5 0%, #ACB6E5 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .form-container {
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+      padding: 40px;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    input:focus {
+      border-color: #4ade80;
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.5);
+    }
+
+    .form-title {
+      color: #333;
+      font-size: 32px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .form-subtitle {
+      color: #666;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    button:hover {
+      background: linear-gradient(135deg, #34d399, #059669);
+    }
+
+    .field-label {
+      display: flex;
+      align-items: center;
+    }
+
+    .field-icon {
+      margin-right: 8px;
+      color: #10b981;
+    }
+
+    .input-field {
+      transition: transform 0.3s ease;
+    }
+
+    .input-field:hover {
+      transform: scale(1.02);
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2 class="form-title">Credit Card Fraud Detection</h2>
+    <p class="form-subtitle">Enter transaction details to predict fraud</p>
+
+    <form action="{{ url_for('predict') }}" method="POST">
+      <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+        
+        <!-- Time Input Field -->
+        <div>
+          <label class="text-gray-700 field-label">
+            <span class="material-icons field-icon">access_time</span> Time
+          </label>
+          <input name="time" type="number" required class="input-field block w-full px-4 py-2 mt-2 border rounded-md focus:ring-green-400">
+        </div>
+        
+        <!-- V1 Input Field -->
+        <div>
+          <label class="text-gray-700 field-label">
+            <span class="material-icons field-icon">bar_chart</span> V1
+          </label>
+          <input name="v1" type="number" required class="input-field block w-full px-4 py-2 mt-2 border rounded-md focus:ring-green-400">
+        </div>
+
+        <!-- V2 Input Field -->
+        <div>
+          <label class="text-gray-700 field-label">
+            <span class="material-icons field-icon">bar_chart</span> V2
+          </label>
+          <input name="v2" type="number" required class="input-field block w-full px-4 py-2 mt-2 border rounded-md focus:ring-green-400">
+        </div>
+
+        <!-- V3 Input Field -->
+        <div>
+          <label class="text-gray-700 field-label">
+            <span class="material-icons field-icon">bar_chart</span> V3
+          </label>
+          <input name="v3" type="number" required class="input-field block w-full px-4 py-2 mt-2 border rounded-md focus:ring-green-400">
+        </div>
+
+        <!-- V3 Input Field -->
+        <div>
+          <label class="text-gray-700 field-label">
+            <span class="material-icons field-icon">bar_chart</span> V4
+          </label>
+          <input name="v4" type="number" required class="input-field block w-full px-4 py-2 mt-2 border rounded-md focus:ring-green-400">
+        </div>
+
+        <!-- V3 Input Field -->
+        <div>
+          <label class="text-gray-700 field-label">
+            <span class="material-icons field-icon">bar_chart</span> V5
+          </label>
+          <input name="v5" type="number" required class="input-field block w-full px-4 py-2 mt-2 border rounded-md focus:ring-green-400">
+        </div>
+
+        <!-- V3 Input Field -->
+        <div>
+          <label class="text-gray-700 field-label">
+            <span class="material-icons field-icon">bar_chart</span> V6
+          </label>
+          <input name="v6" type="number" required class="input-field block w-full px-4 py-2 mt-2 border rounded-md focus:ring-green-400">
+        </div>
+
+        <!-- V3 Input Field -->
+        <div>
+          <label class="text-gray-700 field-label">
+            <span class="material-icons field-icon">bar_chart</span> V7
+          </label>
+          <input name="v7" type="number" required class="input-field block w-full px-4 py-2 mt-2 border rounded-md focus:ring-green-400">
+        </div>
+
+        <!-- V3 Input Field -->
+        <div>
+          <label class="text-gray-700 field-label">
+            <span class="material-icons field-icon">bar_chart</span> V8
+          </label>
+          <input name="v8" type="number" required class="input-field block w-full px-4 py-2 mt-2 border rounded-md focus:ring-green-400">
+        </div>
+
+        <!-- V3 Input Field -->
+        <div>
+          <label class="text-gray-700 field-label">
+            <span class="material-icons field-icon">bar_chart</span> V9
+          </label>
+          <input name="v9" type="number" required class="input-field block w-full px-4 py-2 mt-2 border rounded-md focus:ring-green-400">
+        </div>
+
+        <!-- V3 Input Field -->
+        <div>
+          <label class="text-gray-700 field-label">
+            <span class="material-icons field-icon">bar_chart</span> V10
+          </label>
+          <input name="v10" type="number" required class="input-field block w-full px-4 py-2 mt-2 border rounded-md focus:ring-green-400">
+        </div>
+
+        <!-- V3 Input Field -->
+        <div>
+          <label class="text-gray-700 field-label">
+            <span class="material-icons field-icon">bar_chart</span> V11
+          </label>
+          <input name="v11" type="number" required class="input-field block w-full px-4 py-2 mt-2 border rounded-md focus:ring-green-400">
+        </div>
+
+        <!-- V3 Input Field -->
+        <div>
+          <label class="text-gray-700 field-label">
+            <span class="material-icons field-icon">bar_chart</span> V12
+          </label>
+          <input name="v12" type="number" required class="input-field block w-full px-4 py-2 mt-2 border rounded-md focus:ring-green-400">
+        </div>
+
+        <!-- V3 Input Field -->
+        <div>
+          <label class="text-gray-700 field-label">
+            <span class="material-icons field-icon">bar_chart</span> V13
+          </label>
+          <input name="v13" type="number" required class="input-field block w-full px-4 py-2 mt-2 border rounded-md focus:ring-green-400">
+        </div>
+
+        <!-- V3 Input Field -->
+        <div>
+          <label class="text-gray-700 field-label">
+            <span class="material-icons field-icon">bar_chart</span> V14
+          </label>
+          <input name="v14" type="number" required class="input-field block w-full px-4 py-2 mt-2 border rounded-md focus:ring-green-400">
+        </div>
+
+        <!-- V3 Input Field -->
+        <div>
+          <label class="text-gray-700 field-label">
+            <span class="material-icons field-icon">bar_chart</span> V15
+          </label>
+          <input name="v15" type="number" required class="input-field block w-full px-4 py-2 mt-2 border rounded-md focus:ring-green-400">
+        </div>
+
+        <!-- V3 Input Field -->
+        <div>
+          <label class="text-gray-700 field-label">
+            <span class="material-icons field-icon">bar_chart</span> V16
+          </label>
+          <input name="v17" type="number" required class="input-field block w-full px-4 py-2 mt-2 border rounded-md focus:ring-green-400">
+        </div>
+
+        <!-- V3 Input Field -->
+        <div>
+          <label class="text-gray-700 field-label">
+            <span class="material-icons field-icon">bar_chart</span> V17
+          </label>
+          <input name="v17" type="number" required class="input-field block w-full px-4 py-2 mt-2 border rounded-md focus:ring-green-400">
+        </div>
+
+        <!-- V3 Input Field -->
+        <div>
+          <label class="text-gray-700 field-label">
+            <span class="material-icons field-icon">bar_chart</span> V18
+          </label>
+          <input name="v18" type="number" required class="input-field block w-full px-4 py-2 mt-2 border rounded-md focus:ring-green-400">
+        </div>
+
+        <!-- V3 Input Field -->
+        <div>
+          <label class="text-gray-700 field-label">
+            <span class="material-icons field-icon">bar_chart</span> V19
+          </label>
+          <input name="v19" type="number" required class="input-field block w-full px-4 py-2 mt-2 border rounded-md focus:ring-green-400">
+        </div>
+
+        <!-- V3 Input Field -->
+        <div>
+          <label class="text-gray-700 field-label">
+            <span class="material-icons field-icon">bar_chart</span> V20
+          </label>
+          <input name="v20" type="number" required class="input-field block w-full px-4 py-2 mt-2 border rounded-md focus:ring-green-400">
+        </div>
+
+        <!-- V3 Input Field -->
+        <div>
+          <label class="text-gray-700 field-label">
+            <span class="material-icons field-icon">bar_chart</span> V21
+          </label>
+          <input name="v21" type="number" required class="input-field block w-full px-4 py-2 mt-2 border rounded-md focus:ring-green-400">
+        </div>
+
+        <!-- V3 Input Field -->
+        <div>
+          <label class="text-gray-700 field-label">
+            <span class="material-icons field-icon">bar_chart</span> V22
+          </label>
+          <input name="v22" type="number" required class="input-field block w-full px-4 py-2 mt-2 border rounded-md focus:ring-green-400">
+        </div>
+
+        <!-- V3 Input Field -->
+        <div>
+          <label class="text-gray-700 field-label">
+            <span class="material-icons field-icon">bar_chart</span> V23
+          </label>
+          <input name="v23" type="number" required class="input-field block w-full px-4 py-2 mt-2 border rounded-md focus:ring-green-400">
+        </div>
+
+        <!-- V3 Input Field -->
+        <div>
+          <label class="text-gray-700 field-label">
+            <span class="material-icons field-icon">bar_chart</span> V24
+          </label>
+          <input name="v24" type="number" required class="input-field block w-full px-4 py-2 mt-2 border rounded-md focus:ring-green-400">
+        </div>
+
+        <!-- V3 Input Field -->
+        <div>
+          <label class="text-gray-700 field-label">
+            <span class="material-icons field-icon">bar_chart</span> V25
+          </label>
+          <input name="v25" type="number" required class="input-field block w-full px-4 py-2 mt-2 border rounded-md focus:ring-green-400">
+        </div>
+
+        <!-- V3 Input Field -->
+        <div>
+          <label class="text-gray-700 field-label">
+            <span class="material-icons field-icon">bar_chart</span> V26
+          </label>
+          <input name="v26" type="number" required class="input-field block w-full px-4 py-2 mt-2 border rounded-md focus:ring-green-400">
+        </div>
+
+        <!-- V3 Input Field -->
+        <div>
+          <label class="text-gray-700 field-label">
+            <span class="material-icons field-icon">bar_chart</span> V27
+          </label>
+          <input name="v27" type="number" required class="input-field block w-full px-4 py-2 mt-2 border rounded-md focus:ring-green-400">
+        </div>
+
+        <!-- V3 Input Field -->
+        <div>
+          <label class="text-gray-700 field-label">
+            <span class="material-icons field-icon">bar_chart</span> V28
+          </label>
+          <input name="v28" type="number" required class="input-field block w-full px-4 py-2 mt-2 border rounded-md focus:ring-green-400">
+        </div>
+
+        <!-- V3 Input Field -->
+        <div>
+          <label class="text-gray-700 field-label">
+            <span class="material-icons field-icon">bar_chart</span> Amount
+          </label>
+          <input name="amount" type="number" required class="input-field block w-full px-4 py-2 mt-2 border rounded-md focus:ring-green-400">
+        </div>
+
+
+        <!-- Add more fields here for V4 - V28 and Amount -->
+
+      </div>
+
+      <!-- Submit Button -->
+      <div class="flex justify-center mt-6">
+        <button type="submit" class="px-8 py-3 leading-5 bg-green-500 text-white text-lg transition-colors duration-200 transform rounded-md focus:outline-none focus:bg-green-600">
+          Predict
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Add icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</body>
+</html>
